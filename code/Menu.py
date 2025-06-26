@@ -9,7 +9,7 @@ from code.Const import MENU_OPTION, WIN_WIDTH, COLOR_ORANGE, COLOR_YELLOW, COLOR
 class Menu:
     def __init__(self, window):
         self.window = window
-        self.surf = pygame.image.load("./asset/MenuBg.png")
+        self.surf = pygame.image.load("./asset/MenuBg.png").convert_alpha()
         self.rect = self.surf.get_rect(left=0, top=0)
 
     def run(self):
@@ -27,9 +27,15 @@ class Menu:
             )
             self.menu_text(
                 text_size=50,
-                text="Shooter",
+                text="Runner",
                 text_color=COLOR_ORANGE,
                 text_center_pos=((WIN_WIDTH / 2), 120),
+            )
+            self.menu_text(
+                text_size=20,
+                text="Press Space to Jump",
+                text_color=COLOR_WHITE,
+                text_center_pos=((WIN_WIDTH / 2), 160),
             )
             for i in range(len(MENU_OPTION)):
                 if i == menu_option:

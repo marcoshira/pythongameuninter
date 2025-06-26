@@ -11,15 +11,14 @@ ENTITY_SPEED = {
     "Level1Bg3": 3,
     "Level1Bg4": 4,
     "Level1Bg5": 5,
-    "Level1Bg6": 6,
+    "Level1Bg6": 0,
+    'Player1': 30,
+    'Obstacle1': 15
 }
 
 # M
 MENU_OPTION = (
-    "NEW GAME 1P",
-    "NEW GAME 2P - COOPERATIVE",
-    "NEW GAME 2P - COMPETITIVE",
-    "SCORE",
+    "NEW GAME",
     "EXIT",
 )
 
