@@ -32,7 +32,3 @@ class Player(Entity):
                     if not self.is_jumping:
                         self.velocity_y = self.jump_strength
                         self.is_jumping = True
-
-        
-        
-        

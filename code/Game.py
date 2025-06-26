@@ -28,4 +28,3 @@ class Game:
             else:
                 pygame.quit()
                 quit()
-

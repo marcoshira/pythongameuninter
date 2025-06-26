@@ -18,19 +18,22 @@ class Level:
         self.start_ticks = pygame.time.get_ticks()
         self.player = EntityFactory.get_entity("Player1")
         self.obstacles = []
-        self.obstacle_spawn_delay = 3000        
+        self.obstacle_spawn_delay = 3000
         self.entity_list: list[Entity] = []
         self.entity_list.extend(EntityFactory.get_entity("Level1Bg"))
         self.entity_list.append(self.player)
         self.entity_list.extend(self.obstacles)
 
     def run(self):
-        pygame.mixer_music.load(f'./asset/{self.name}.mp3')
+        pygame.mixer_music.load(f"./asset/{self.name}.mp3")
         pygame.mixer_music.play(-1)
         clock = pygame.time.Clock()
         while True:
             current_time = pygame.time.get_ticks()
-            if not self.obstacles and current_time - self.start_ticks > self.obstacle_spawn_delay:
+            if (
+                not self.obstacles
+                and current_time - self.start_ticks > self.obstacle_spawn_delay
+            ):
                 obstacle = EntityFactory.get_entity("Obstacle1")
                 self.obstacles.append(obstacle)
                 self.entity_list.append(obstacle)
@@ -53,12 +56,14 @@ class Level:
         pass
 
     def level_text(self, text_size: int, text: str, text_color: tuple, text_pos: tuple):
-        text_font: Font = pygame.font.SysFont(name="Lucida Sans Typewriter", size=text_size)
+        text_font: Font = pygame.font.SysFont(
+            name="Lucida Sans Typewriter", size=text_size
+        )
         text_surf: Surface = text_font.render(text, True, text_color).convert_alpha()
         text_rect: Rect = text_surf.get_rect(left=text_pos[0], top=text_pos[1])
         self.window.blit(source=text_surf, dest=text_rect)
-    
-    def handle_collision(self):        
+
+    def handle_collision(self):
         pygame.mixer_music.load("./asset/Score.mp3")
         pygame.mixer_music.play(-1)
         self.game_over_screen()
@@ -66,8 +71,10 @@ class Level:
     def game_over_screen(self):
         background = pygame.image.load("./asset/ScoreBg.png").convert_alpha()
         font = pygame.font.SysFont("Lucida Sans Typewriter", 20)
-        text1 = font.render(f'Game Over - SCORE {self.score}', True, (255, 255, 255))
-        text2 = font.render("Press R to Return to the menu or Q to quit", True, (255, 255, 255))
+        text1 = font.render(f"Game Over - SCORE {self.score}", True, (255, 255, 255))
+        text2 = font.render(
+            "Press R to Return to the menu or Q to quit", True, (255, 255, 255)
+        )
         text_rect = text1.get_rect(center=(WIN_WIDTH // 2, WIN_HEIGHT // 2))
         text2_rect = text2.get_rect(center=(WIN_WIDTH // 2, WIN_HEIGHT // 2 + 30))
 
@@ -88,4 +95,3 @@ class Level:
                         sys.exit()
                     if event.key == pygame.K_r:
                         return "retry"
-
